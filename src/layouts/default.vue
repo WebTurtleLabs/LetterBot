@@ -1,15 +1,16 @@
 <template>
   <v-app theme="myThemeLight">
-    <v-navigation-drawer v-model="drawer" temporary></v-navigation-drawer>
+    <v-navigation-drawer v-model="drawer" temporary>
+      <v-list nav>
+        <v-list-item title="Generate" @click="(drawer = false) || $goTo('generate')"></v-list-item>
+        <v-list-item title="About" @click="(drawer = false) || $goTo('about')"></v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
-    <v-app-bar absolute flat color="transparent">
+    <v-app-bar v-if="smAndDown" absolute flat color="transparent">
       <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-app-bar-title>Motivation</v-app-bar-title>
-      <div v-if="mdAndUp">
-      <v-btn variant="plain" @click="$goTo('generate')">Generate</v-btn>
-      <v-btn variant="plain" @click="$goTo('about')">About</v-btn>
-      </div>
+      <v-app-bar-title>LetterBot</v-app-bar-title>
     </v-app-bar>
 
     <v-main class="pt-0">
@@ -21,7 +22,7 @@
 
 <script setup>
 import { useDisplay } from 'vuetify'
-const { mdAndUp } = useDisplay();
+const { smAndDown } = useDisplay();
 const drawer = ref(null)
 
 </script>

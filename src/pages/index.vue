@@ -47,11 +47,8 @@
         <div class="text-h2 text-center font-weight-regular">About</div>
       </v-col>
 
-      <AboutSection title="International Team" icon="mdi-account-multiple" description="This is description"/>
-      <AboutSection title="Powered by AI" icon="mdi-brain" description="This is description" animation-delay="200"/>
-      <v-col cols="12" class="v-col-md-6" align-self="center">
-        <div class="text-h4 text-center"></div>
-      </v-col>
+      <AboutSection title="International Team" icon="mdi-account-multiple" :description="teamDescription"/>
+      <AboutSection title="Powered by AI" icon="mdi-brain" :description="aiDescription" animation-delay="200"/>
     </v-row>
   </v-container>
 </template>
@@ -63,6 +60,9 @@ import {storeToRefs} from "pinia";
 
 const {loading, generated, letter} = storeToRefs(useCurrentStateStore())
 const { $goTo } = useNuxtApp()
+
+const teamDescription = "LetterBot utilizes cutting-edge AI technology to generate personalized motivation letters. As computer scientists, we have a team of experts who have dedicated their skills to develop this simple and innovative tool for job seekers."
+const aiDescription = "With our AI-powered technology, you can be sure that the motivation letter generated will be tailored to your specific needs and written in a professional and persuasive manner. Say goodbye to generic and impersonal letters, and hello to a polished and powerful letter that will help you land your dream job."
 
 watch(generated, ( newValue, oldValue ) => {
   if (!oldValue && newValue){

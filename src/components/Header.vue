@@ -3,8 +3,9 @@
     <v-container style="height:100%">
       <v-row style="height:100%;">
         <v-col cols="12" align-self="center" class="v-col-md-8">
-          <div class="text-h2 text-sm-h1 text-over-svg">Motivation Letter Generator</div>
-          <v-btn class="my-4 text-over-svg" size="x-large" rounded="pill" color="primary" @click="$goTo('generate')">Begin</v-btn>
+          <div class="text-h2 text-sm-h1 text-over-svg">LetterBot</div>
+          <div class="text-h6 text-sm-h5 text-over-svg">Next Gen AI-Powered Motivation Letter Generator</div>
+          <v-btn class="my-3 text-over-svg" size="x-large" rounded="pill" color="primary" @click="$goTo('generate')">Begin</v-btn>
         </v-col>
         <v-col cols="12" align-self="center" class="v-col-md-4">
           <v-img :cover="!mdAndUp" :class="mdAndUp ? 'hero-banner-image': 'hero-banner-image-mobile' " src="motivation_banner.svg"></v-img>

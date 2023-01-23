@@ -26,12 +26,12 @@ function onIntersect(isIntersecting, entries, observer) {
     setTimeout(()=>{
       entries[0].target.style.visibility="visible"
       entries[0].target.classList.add("animate__fadeInUp")
-      console.log(true)
+      //console.log(true)
     },props.animationDelay || 0)
 
   }
   else {
-    console.log(false)
+    //console.log(false)
   }
 
 }

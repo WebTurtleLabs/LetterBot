@@ -7,7 +7,8 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar v-if="smAndDown" absolute flat color="transparent">
+    <!-- ce na serverju se vedno utripa: class="hidden-md-and-up" -->
+    <v-app-bar class="hidden-md-and-up" absolute flat color="transparent">
       <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-app-bar-title>LetterBot</v-app-bar-title>

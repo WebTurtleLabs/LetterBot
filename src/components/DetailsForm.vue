@@ -1,30 +1,36 @@
 <template>
   <v-card style="overflow: visible; z-index: 1">
-    <v-form class="pa-4 text-center" ref="form" v-model="valid" lazy-validation style="position: relative">
+    <v-form class="pa-4 pb-8 text-center" ref="inputForm" v-model="valid" lazy-validation style="position: relative">
       <v-text-field
-          v-model="name"
+          v-model="organization"
+          label="Name of the organization you are applying to"
+          hint="Google, Tesla, Harvard, ..."
           variant="outlined"
-          :rules="nameRules"
-          label="Full Name"
           required
+          :rules="organizationRules"
       ></v-text-field>
 
       <v-text-field
-          v-model="email"
+          v-model="currentPosition"
+          label="Current position/education"
+          hint="student, developer, secretary, ..."
           variant="outlined"
-          :rules="emailRules"
-          label="E-mail"
-          required
+          require
+          :rules="currentPositionRules"
       ></v-text-field>
 
-      <v-select
-          v-model="select"
+      <v-autocomplete
+          v-model="personalityTraits"
+          chips
+          multiple
+          clearable
+          closable-chips
+          label="Personality traits"
+          :items="personalityTraitsItems"
           variant="outlined"
-          :items="items"
-          :rules="[v => !!v || 'Item is required']"
-          label="Item"
           required
-      ></v-select>
+          :rules="personalityTraitsRules"
+      ></v-autocomplete>
     </v-form>
     <v-btn
         class="half-over-button"
@@ -34,7 +40,8 @@
         size="x-large"
         @click="validate"
         :loading="loading"
-    >Generate</v-btn>
+    >Generate
+    </v-btn>
   </v-card>
 
 </template>
@@ -43,11 +50,101 @@
 
 import {useCurrentStateStore} from "../stores/currentState";
 import {storeToRefs} from "pinia";
+import {ref} from "vue";
 
-const {loading, generated} = storeToRefs(useCurrentStateStore())
+const inputForm = ref(null);
+const organization = ref("");
+const currentPosition = ref("");
+const personalityTraits = ref([]);
+const valid = ref(true)
+const personalityTraitsItems = ref([
+  "Adaptable",
+  "Adventurous",
+  "Ambitious",
+  "Approachable",
+  "Assertive",
+  "Caring",
+  "Charismatic",
+  "Compassionate",
+  "Confident",
+  "Considerate",
+  "Cooperative",
+  "Courageous",
+  "Creative",
+  "Curious",
+  "Determined",
+  "Disciplined",
+  "Empathetic",
+  "Encouraging",
+  "Energetic",
+  "Enthusiastic",
+  "Ethical",
+  "Fair",
+  "Friendly",
+  "Generous",
+  "Grateful",
+  "Hardworking",
+  "Helpful",
+  "Honest",
+  "Humble",
+  "Independent",
+  "Innovative",
+  "Insightful",
+  "Intelligent",
+  "Kind",
+  "Leadership",
+  "Logical",
+  "Loyal",
+  "Mature",
+  "Motivated",
+  "Open-minded",
+  "Optimistic",
+  "Patient",
+  "Patriotic",
+  "Peaceful",
+  "Persevering",
+  "Persistent",
+  "Polite",
+  "Positive",
+  "Practical",
+  "Proactive",
+  "Resourceful",
+  "Responsible",
+  "Respectful",
+  "Self-aware",
+  "Selfless",
+  "Sensitive",
+  "Sociable",
+  "Supportive",
+  "Thorough",
+  "Tolerant",
+  "Trustworthy"
+])
+const {loading, form} = storeToRefs(useCurrentStateStore())
 
-function validate() {
-  useCurrentStateStore().generate("Lan")
+const organizationRules = [
+  v => !!v || "Required Field",
+  v => !!v && v.length <= 32 || "Organization name too long",
+]
+
+const currentPositionRules = [
+  v => !!v || "Required Field",
+  v => !!v && v.length <= 32 || "Current position/education too long",
+]
+
+const personalityTraitsRules = [
+  v => (v && v.length > 0) || "Required Field",
+  v => (v && v.length <= 5) || 'You can select up to 5 personality traits',
+]
+
+async function validate () {
+  const { valid } = await inputForm.value.validate()
+  if (valid){
+    form.value.organization = organization.value
+    form.value.currentPosition = currentPosition.value
+    form.value.personalityTraits = personalityTraits.value
+    await useCurrentStateStore().generate()
+  }
 }
 </script>
 

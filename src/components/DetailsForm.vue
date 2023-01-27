@@ -29,6 +29,7 @@
           :items="personalityTraitsItems"
           variant="outlined"
           required
+          eager
           :rules="personalityTraitsRules"
       ></v-autocomplete>
     </v-form>

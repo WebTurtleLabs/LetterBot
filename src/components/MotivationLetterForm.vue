@@ -1,5 +1,5 @@
 <template>
-  <div class="text-md-h4 text-h6 text-white font-weight-regular mt-10">{{ letter }}</div>
+  <div class="text-md-h4 text-h6 text-white font-weight-regular mt-10" v-html="letter"/>
 </template>
 
 <script setup>

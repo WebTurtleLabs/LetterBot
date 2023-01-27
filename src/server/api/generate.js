@@ -1,7 +1,25 @@
+import { Configuration, OpenAIApi } from "openai";
+
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
-    //const {res} = await $fetch('https://....apikey')
+
+    const configuration = new Configuration({
+        apiKey: process.env.OPENAI_API_KEY,
+    });
+    const openai = new OpenAIApi(configuration);
+
+    let prompt = `Write a motivation letter to apply for ${body.form.organization}. Currently I am ${body.form.currentPosition} List of my personality traits: ${body.form.personalityTraits.toString()}`
+
+    const completion = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: prompt,
+        temperature: 1,
+        max_tokens: 500
+    });
+
+    //console.log(completion.data)
+
     return {
-        letter: `${body.form.organization} ${body.form.currentPosition} ${body.form.personalityTraits} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus sed viverra tellus in hac habitasse platea. Neque viverra justo nec ultrices. Pulvinar sapien et ligula ullamcorper malesuada proin libero. Non enim praesent elementum facilisis leo vel fringilla est ullamcorper. Dui id ornare arcu odio ut sem nulla pharetra diam. Leo vel orci porta non pulvinar neque laoreet suspendisse interdum. Eget lorem dolor sed viverra ipsum nunc aliquet. Habitasse platea dictumst quisque sagittis. Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. Ac tortor vitae purus faucibus ornare suspendisse sed nisi. Aliquam id diam maecenas ultricies mi eget. Velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Turpis egestas integer eget aliquet nibh praesent tristique magna sit. Mauris sit amet massa vitae tortor condimentum lacinia quis vel.`,
+        letter: completion.data.choices[0].text.replace(/\n/g, "<br>"),
     }
-})
+});

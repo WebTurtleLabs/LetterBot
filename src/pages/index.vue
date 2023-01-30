@@ -72,7 +72,7 @@ const aiDescription = "With our AI-powered technology, you can be sure that the 
 
 function copyContent(){
   if(process.client){
-    navigator.clipboard.writeText(letter);
+    navigator.clipboard.writeText(letter.value);
   }
 }
 watch(generated, (newValue, oldValue) => {

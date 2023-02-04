@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     },
     modules: [
         '@pinia/nuxt',
-        '@nuxtjs/google-adsense',
     ],
     css: [
         "vuetify/lib/styles/main.sass",
@@ -19,8 +18,5 @@ export default defineNuxtConfig({
     build: {
         transpile: ["vuetify"],
     },
-    'google-adsense': {
-        id: process.env.CA_ID
-    }
 
 })

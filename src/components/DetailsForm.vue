@@ -139,17 +139,18 @@ const personalityTraitsRules = [
 ]
 
 async function validate () {
-  /*const { valid } = await inputForm.value.validate()
+  const { valid } = await inputForm.value.validate()
   if (valid){
     form.value.organization = organization.value
     form.value.currentPosition = currentPosition.value
     form.value.personalityTraits = personalityTraits.value
+
+    if (typeof window.aiptag.adplayer !== 'undefined') {
+      window.aiptag.cmd.player.push(function() { window.aiptag.adplayer.startRewardedAd(); });
+    } else {
+      console.log("Rewarded Ad Could not be loaded, load your content here");
+    }
     await useCurrentStateStore().generate()
-  }*/
-  if (typeof window.aiptag.adplayer !== 'undefined') {
-    window.aiptag.cmd.player.push(function() { window.aiptag.adplayer.startRewardedAd(); });
-  } else {
-    console.log("Rewarded Ad Could not be loaded, load your content here");
   }
 }
 </script>

@@ -25,6 +25,7 @@
 <script setup>
 import { useDisplay } from 'vuetify'
 import {useHead} from "nuxt/app";
+import {useCurrentStateStore} from "../stores/currentState";
 const { smAndDown } = useDisplay();
 const drawer = ref(null)
 
@@ -51,7 +52,7 @@ onMounted(() => {
         //evt can be: timeout, empty or closed
         console.log("Rewarded Ad Completed: " + evt);
       },
-      AIP_REWARDEDGRANTED: function ()  {
+      AIP_REWARDEDGRANTED: async function () {
         console.log("Reward Granted");
       },
       AD_WIDTH: 960,

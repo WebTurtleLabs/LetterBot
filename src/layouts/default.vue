@@ -40,7 +40,7 @@ onMounted(() => {
   // Download the AdinPlay Ads JavaScript library
   let aipScript = document.createElement('script');
   aipScript.async = true
-  aipScript.src = process.env.AIP_ID
+  aipScript.src = "//api.adinplay.com/libs/aiptag/pub/WBT/webturtlelabs.com/tag.min.js"
   //aipScript.addEventListener("load", () => { adsLoaded() });
   document.head.appendChild(aipScript)
 

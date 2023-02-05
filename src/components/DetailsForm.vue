@@ -144,22 +144,19 @@ async function validate () {
 
   if (typeof window.aiptag.adplayer === 'undefined') {
     console.log("Disable adblocker")
+    return
   }
 
   if (valid){
-    let sameData = form.value.organization === organization.value && form.value.currentPosition === currentPosition.value && form.value.personalityTraits === personalityTraits.value
-
     form.value.organization = organization.value
     form.value.currentPosition = currentPosition.value
     form.value.personalityTraits = personalityTraits.value
 
+    // Display ad
     window.aiptag.cmd.player.push(function() { window.aiptag.adplayer.startRewardedAd(); });
-    if(!sameData || (sameData && rewardGranted)){
-      generated.value = false
-    }
-    if(!generated.value){
-      await useCurrentStateStore().generate();
-    }
+
+    // Generate motivation letter
+    await useCurrentStateStore().generate();
   }
 }
 </script>

@@ -44,7 +44,6 @@ onMounted(() => {
   let aipScript = document.createElement('script');
   aipScript.async = true
   aipScript.src = "//api.adinplay.com/libs/aiptag/pub/WBT/webturtlelabs.com/tag.min.js"
-  //aipScript.addEventListener("load", () => { adsLoaded() });
   document.head.appendChild(aipScript)
 
   // Init video player
@@ -70,17 +69,6 @@ onMounted(() => {
       }
     });
   });
-
-  /*function adsLoaded(){
-    //check if the adslib is loaded correctly or blocked by adblockers etc.
-    if (typeof window.aiptag.adplayer !== 'undefined') {
-      window.aiptag.cmd.player.push(function() { window.aiptag.adplayer.startRewardedAd(); });
-    } else {
-      //Adlib didnt load this could be due to an adblocker, timeout etc.
-      //Please add your script here that starts the content, this usually is the same script as added in AIP_REWARDEDCOMPLETE.
-      console.log("Rewarded Ad Could not be loaded, load your content here");
-    }
-  }*/
 });
 
 </script>

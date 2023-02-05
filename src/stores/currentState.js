@@ -18,13 +18,18 @@ export const useCurrentStateStore = defineStore('currentStateStore', {
             this.loading = true
             this.generated = false
             this.rewardGranted = false
-            const {data} = await useFetch('/api/generate',{
+            const {data, error} = await useFetch('/api/generate',{
                 method: 'POST',
                 body:{
                     form: this.form
                 }
             })
-            this.letter = data.value.letter
+            if (error){
+                this.letter = "An error occured while generating your motivation letter. Please try again."
+            }
+            else {
+                this.letter = data.value.letter
+            }
             this.loading = false
             this.generated = true
         },

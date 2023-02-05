@@ -154,10 +154,12 @@ async function validate () {
     form.value.personalityTraits = personalityTraits.value
 
     window.aiptag.cmd.player.push(function() { window.aiptag.adplayer.startRewardedAd(); });
-    if (!sameData || (sameData && (!rewardGranted.value || !generated.value))) {
+    if(!sameData || (sameData && rewardGranted)){
+      generated.value = false
+    }
+    if(!generated.value){
       await useCurrentStateStore().generate();
     }
-
   }
 }
 </script>

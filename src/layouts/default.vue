@@ -29,7 +29,7 @@ import {storeToRefs} from "pinia";
 const { smAndDown } = useDisplay();
 const drawer = ref(null)
 
-const {show} = storeToRefs(useCurrentStateStore())
+const {loading, show} = storeToRefs(useCurrentStateStore())
 
 onMounted(() => {
 
@@ -53,9 +53,11 @@ onMounted(() => {
       AIP_REWARDEDCOMPLETE: function (evt)  {
         //evt can be: timeout, empty or closed
         console.log("Rewarded Ad Completed: " + evt);
+        loading.value = false
       },
       AIP_REWARDEDGRANTED: async function () {
         console.log("Reward Granted");
+        loading.value = false
         show.value= true
       },
       AD_WIDTH: 960,

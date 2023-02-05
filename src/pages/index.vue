@@ -75,7 +75,7 @@ function copyContent(){
     navigator.clipboard.writeText(letter.value.replace("<br>", /\n/g));
   }
 }
-watch(generated, (newValue, oldValue) => {
+watch(show, (newValue, oldValue) => {
   if (!oldValue && newValue) {
     setTimeout(() => {
       $goTo("letter")

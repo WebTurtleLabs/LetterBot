@@ -17,6 +17,7 @@ export const useCurrentStateStore = defineStore('currentStateStore', {
         async generate() {
             this.loading = true
             this.generated = false
+            this.show = false
             const {data} = await useFetch('/api/generate',{
                 method: 'POST',
                 body:{

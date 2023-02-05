@@ -19,6 +19,7 @@
       <slot/>
     </v-main>
     <Footer/>
+    <AdsSnackbar/>
   </v-app>
 </template>
 
@@ -29,7 +30,7 @@ import {storeToRefs} from "pinia";
 const { smAndDown } = useDisplay();
 const drawer = ref(null)
 
-const {loading, rewardGranted} = storeToRefs(useCurrentStateStore())
+const {loading, rewardGranted, adBlocking} = storeToRefs(useCurrentStateStore())
 
 onMounted(() => {
 
@@ -84,9 +85,11 @@ function adBlockCheck() {
     if (testAdStyle.display === 'none') {
       // Adblock enabled: do something
       console.log("Adblock enabled")
+      adBlocking.value = true
     } else {
       // Adblock disabled: do something
       console.log("Adblock disabled")
+      adBlocking.value = false
     }
   },1000)
 }

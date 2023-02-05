@@ -11,7 +11,8 @@ export const useCurrentStateStore = defineStore('currentStateStore', {
             currentPosition: "",
             personalityTraits: ""
         },
-        letter: ""
+        letter: "",
+        adBlocking: false
     }),
     actions: {
         async generate() {

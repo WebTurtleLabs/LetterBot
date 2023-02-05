@@ -41,7 +41,7 @@
         size="x-large"
         @click="validate"
         :loading="loading"
-        :disabled="loading"
+        :disabled="loading || adBlocking"
     >Generate
     </v-btn>
   </v-card>
@@ -122,7 +122,7 @@ const personalityTraitsItems = ref([
   "Tolerant",
   "Trustworthy"
 ])
-const {loading, generated, rewardGranted, form} = storeToRefs(useCurrentStateStore())
+const {loading, generated, rewardGranted, form, adBlocking} = storeToRefs(useCurrentStateStore())
 
 const organizationRules = [
   v => !!v || "Required Field",
@@ -139,27 +139,18 @@ const personalityTraitsRules = [
   v => (v && v.length <= 5) || 'You can select up to 5 personality traits',
 ]
 
-async function validate () {
-  const { valid } = await inputForm.value.validate()
+async function validate() {
+  const {valid} = await inputForm.value.validate()
 
-  if ( typeof(window.google_jobrunner) === "undefined" ) {
-    console.log("ad blocker installed");
-  } else {
-    console.log("no ad blocking found.");
-  }
-
-  if (typeof window.aiptag.adplayer === 'undefined') {
-    console.log("Disable adblocker")
-    return
-  }
-
-  if (valid){
+  if (valid) {
     form.value.organization = organization.value
     form.value.currentPosition = currentPosition.value
     form.value.personalityTraits = personalityTraits.value
 
     // Display ad
-    window.aiptag.cmd.player.push(function() { window.aiptag.adplayer.startRewardedAd(); });
+    window.aiptag.cmd.player.push(function () {
+      window.aiptag.adplayer.startRewardedAd();
+    });
 
     // Generate motivation letter
     await useCurrentStateStore().generate();

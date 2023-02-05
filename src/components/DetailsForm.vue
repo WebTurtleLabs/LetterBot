@@ -142,6 +142,12 @@ const personalityTraitsRules = [
 async function validate () {
   const { valid } = await inputForm.value.validate()
 
+  if ( typeof(window.google_jobrunner) === "undefined" ) {
+    console.log("ad blocker installed");
+  } else {
+    console.log("no ad blocking found.");
+  }
+
   if (typeof window.aiptag.adplayer === 'undefined') {
     console.log("Disable adblocker")
     return

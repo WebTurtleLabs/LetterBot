@@ -24,7 +24,7 @@ export const useCurrentStateStore = defineStore('currentStateStore', {
                     form: this.form
                 }
             })
-            if (error){
+            if (error.value){
                 this.letter = "An error occured while generating your motivation letter. Please try again."
             }
             else {

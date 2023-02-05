@@ -19,7 +19,6 @@
       <slot/>
     </v-main>
     <Footer/>
-    <AdsSnackbar/>
   </v-app>
 </template>
 
@@ -82,14 +81,9 @@ function adBlockCheck() {
     document.body.appendChild(testAd);
     const testAdStyle = getComputedStyle(testAd);
 
-    if (testAdStyle.display === 'none') {
-      // Adblock enabled: do something
-      console.log("Adblock enabled")
-      adBlocking.value = true
-    } else {
-      // Adblock disabled: do something
-      console.log("Adblock disabled")
+    if (testAdStyle.display !== 'none') {
       adBlocking.value = false
+      console.log("adblocking enabled")
     }
   },1000)
 }

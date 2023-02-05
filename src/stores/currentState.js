@@ -12,7 +12,7 @@ export const useCurrentStateStore = defineStore('currentStateStore', {
             personalityTraits: ""
         },
         letter: "",
-        adBlocking: false
+        adBlocking: true
     }),
     actions: {
         async generate() {

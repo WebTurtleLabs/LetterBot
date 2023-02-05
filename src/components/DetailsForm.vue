@@ -32,6 +32,7 @@
           eager
           :rules="personalityTraitsRules"
       ></v-autocomplete>
+      <p v-if="adBlocking" class="text-subtitle-2">To maintain a free service, ads are utilized. We kindly ask you to disable the adblocker and refresh the page.</p>
     </v-form>
     <v-btn
         class="half-over-button"

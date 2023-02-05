@@ -67,6 +67,8 @@ import {storeToRefs} from "pinia";
 const {loading, generated, rewardGranted, letter} = storeToRefs(useCurrentStateStore())
 const {$goTo} = useNuxtApp()
 
+const ready = computed(() =>{return rewardGranted && generated})
+
 const teamDescription = "LetterBot utilizes cutting-edge AI technology to generate personalized motivation letters. As computer scientists, we have a team of experts who have dedicated their skills to develop this simple and innovative tool for job seekers."
 const aiDescription = "With our AI-powered technology, you can be sure that the motivation letter generated will be tailored to your specific needs and written in a professional and persuasive manner. Say goodbye to generic and impersonal letters, and hello to a polished and powerful letter that will help you land your dream job."
 
@@ -75,7 +77,7 @@ function copyContent(){
     navigator.clipboard.writeText(letter.value.replace("<br>", /\n/g));
   }
 }
-watch(rewardGranted, (newValue, oldValue) => {
+watch(ready, (newValue, oldValue) => {
   if (!oldValue && newValue) {
     setTimeout(() => {
       $goTo("letter")

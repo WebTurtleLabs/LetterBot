@@ -122,7 +122,7 @@ const personalityTraitsItems = ref([
   "Tolerant",
   "Trustworthy"
 ])
-const {loading, form} = storeToRefs(useCurrentStateStore())
+const {loading, generated, rewardGranted, form} = storeToRefs(useCurrentStateStore())
 
 const organizationRules = [
   v => !!v || "Required Field",
@@ -141,17 +141,23 @@ const personalityTraitsRules = [
 
 async function validate () {
   const { valid } = await inputForm.value.validate()
+
+  if (typeof window.aiptag.adplayer === 'undefined') {
+    console.log("Disable adblocker")
+  }
+
   if (valid){
+    let sameData = form.value.organization === organization.value && form.value.currentPosition === currentPosition.value && form.value.personalityTraits === personalityTraits.value
+
     form.value.organization = organization.value
     form.value.currentPosition = currentPosition.value
     form.value.personalityTraits = personalityTraits.value
 
-    if (typeof window.aiptag.adplayer !== 'undefined') {
-      window.aiptag.cmd.player.push(function() { window.aiptag.adplayer.startRewardedAd(); });
-    } else {
-      console.log("Rewarded Ad Could not be loaded, load your content here");
+    window.aiptag.cmd.player.push(function() { window.aiptag.adplayer.startRewardedAd(); });
+    if (!sameData || (sameData && (!rewardGranted.value || !generated.value))) {
+      await useCurrentStateStore().generate();
     }
-    await useCurrentStateStore().generate()
+
   }
 }
 </script>

@@ -16,7 +16,7 @@
     </v-container>
 
     <!-- Motivation Letter Output -->
-    <v-container v-if="show" class="animate__animated animate__fadeInUp px-0" fluid
+    <v-container v-if="rewardGranted" class="animate__animated animate__fadeInUp px-0" fluid
                  style="background: #7E57C2; position: relative">
       <div class="custom-shape-divider-top-1672446038">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -64,7 +64,7 @@
 import {useCurrentStateStore} from "../stores/currentState";
 import {storeToRefs} from "pinia";
 
-const {loading, generated, show, letter} = storeToRefs(useCurrentStateStore())
+const {loading, generated, rewardGranted, letter} = storeToRefs(useCurrentStateStore())
 const {$goTo} = useNuxtApp()
 
 const teamDescription = "LetterBot utilizes cutting-edge AI technology to generate personalized motivation letters. As computer scientists, we have a team of experts who have dedicated their skills to develop this simple and innovative tool for job seekers."
@@ -75,7 +75,7 @@ function copyContent(){
     navigator.clipboard.writeText(letter.value.replace("<br>", /\n/g));
   }
 }
-watch(show, (newValue, oldValue) => {
+watch(rewardGranted, (newValue, oldValue) => {
   if (!oldValue && newValue) {
     setTimeout(() => {
       $goTo("letter")

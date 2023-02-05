@@ -5,7 +5,7 @@ export const useCurrentStateStore = defineStore('currentStateStore', {
     state: () => ({
         loading: false,
         generated: false,
-        show: false,
+        rewardGranted: false,
         form: {
             organization: "",
             currentPosition: "",
@@ -17,7 +17,7 @@ export const useCurrentStateStore = defineStore('currentStateStore', {
         async generate() {
             this.loading = true
             this.generated = false
-            this.show = false
+            this.rewardGranted = false
             const {data} = await useFetch('/api/generate',{
                 method: 'POST',
                 body:{

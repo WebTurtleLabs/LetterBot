@@ -29,7 +29,7 @@ import {storeToRefs} from "pinia";
 const { smAndDown } = useDisplay();
 const drawer = ref(null)
 
-const {loading, show} = storeToRefs(useCurrentStateStore())
+const {loading, rewardGranted} = storeToRefs(useCurrentStateStore())
 
 onMounted(() => {
 
@@ -58,7 +58,7 @@ onMounted(() => {
       AIP_REWARDEDGRANTED: async function () {
         console.log("Reward Granted");
         loading.value = false
-        show.value= true
+        rewardGranted.value= true
       },
       AD_WIDTH: 960,
       AD_HEIGHT: 540,

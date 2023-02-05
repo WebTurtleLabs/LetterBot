@@ -16,7 +16,7 @@
     </v-container>
 
     <!-- Motivation Letter Output -->
-    <v-container v-if="rewardGranted" class="animate__animated animate__fadeInUp px-0" fluid
+    <v-container v-if="ready" class="animate__animated animate__fadeInUp px-0" fluid
                  style="background: #7E57C2; position: relative">
       <div class="custom-shape-divider-top-1672446038">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -67,7 +67,7 @@ import {storeToRefs} from "pinia";
 const {loading, generated, rewardGranted, letter} = storeToRefs(useCurrentStateStore())
 const {$goTo} = useNuxtApp()
 
-const ready = computed(() =>{return rewardGranted && generated})
+const ready = computed(() =>{return (rewardGranted.value && generated.value)})
 
 const teamDescription = "LetterBot utilizes cutting-edge AI technology to generate personalized motivation letters. As computer scientists, we have a team of experts who have dedicated their skills to develop this simple and innovative tool for job seekers."
 const aiDescription = "With our AI-powered technology, you can be sure that the motivation letter generated will be tailored to your specific needs and written in a professional and persuasive manner. Say goodbye to generic and impersonal letters, and hello to a polished and powerful letter that will help you land your dream job."

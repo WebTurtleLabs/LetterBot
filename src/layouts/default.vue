@@ -69,7 +69,27 @@ onMounted(() => {
       }
     });
   });
+
+  adBlockCheck()
 });
+
+function adBlockCheck() {
+  setTimeout(function() {
+    let testAd = document.createElement("div");
+    testAd.innerHTML = "&nbsp;";
+    testAd.className = "adsbygoogle";
+    document.body.appendChild(testAd);
+    const testAdStyle = getComputedStyle(testAd);
+
+    if (testAdStyle.display === 'none') {
+      // Adblock enabled: do something
+      console.log("Adblock enabled")
+    } else {
+      // Adblock disabled: do something
+      console.log("Adblock disabled")
+    }
+  },1000)
+}
 
 </script>
 

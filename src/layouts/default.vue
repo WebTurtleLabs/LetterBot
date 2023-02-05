@@ -24,10 +24,12 @@
 
 <script setup>
 import { useDisplay } from 'vuetify'
-import {useHead} from "nuxt/app";
 import {useCurrentStateStore} from "../stores/currentState";
+import {storeToRefs} from "pinia";
 const { smAndDown } = useDisplay();
 const drawer = ref(null)
+
+const {show} = storeToRefs(useCurrentStateStore())
 
 onMounted(() => {
 
@@ -54,6 +56,7 @@ onMounted(() => {
       },
       AIP_REWARDEDGRANTED: async function () {
         console.log("Reward Granted");
+        show.value= true
       },
       AD_WIDTH: 960,
       AD_HEIGHT: 540,

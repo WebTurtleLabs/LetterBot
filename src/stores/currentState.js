@@ -5,6 +5,7 @@ export const useCurrentStateStore = defineStore('currentStateStore', {
     state: () => ({
         loading: false,
         generated: false,
+        show: false,
         form: {
             organization: "",
             currentPosition: "",

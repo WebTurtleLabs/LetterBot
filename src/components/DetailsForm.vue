@@ -41,6 +41,7 @@
         size="x-large"
         @click="validate"
         :loading="loading"
+        :disabled="loading"
     >Generate
     </v-btn>
   </v-card>

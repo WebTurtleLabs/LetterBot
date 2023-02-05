@@ -74,7 +74,7 @@ const aiDescription = "With our AI-powered technology, you can be sure that the 
 
 function copyContent(){
   if(process.client){
-    navigator.clipboard.writeText(letter.value.replace("<br>", /\n/g));
+    navigator.clipboard.writeText(letter.value.replace("<br>", "\n"));
   }
 }
 watch(ready, (newValue, oldValue) => {

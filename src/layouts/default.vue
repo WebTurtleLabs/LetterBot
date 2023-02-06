@@ -1,19 +1,19 @@
 <template>
   <v-app theme="myThemeLight">
     <div id="preroll"></div>
-    <v-navigation-drawer v-model="drawer" temporary>
+    <!--<v-navigation-drawer v-model="drawer" temporary>
       <v-list nav>
         <v-list-item title="Generate" @click="(drawer = false) || $goTo('generate')"></v-list-item>
         <v-list-item title="About" @click="(drawer = false) || $goTo('about')"></v-list-item>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer>-->
 
     <!-- ce na serverju se vedno utripa: class="hidden-md-and-up" -->
-    <v-app-bar class="hidden-md-and-up" absolute flat color="transparent">
+    <!-- <v-app-bar class="hidden-md-and-up" absolute flat color="transparent">
       <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-app-bar-title>LetterBot</v-app-bar-title>
-    </v-app-bar>
+    </v-app-bar> -->
 
     <v-main class="pt-0">
       <slot/>

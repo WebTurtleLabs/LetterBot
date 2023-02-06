@@ -4,7 +4,7 @@
       {{ new Date().getFullYear() }} — <strong>WebTurtleLabs</strong>
     </div>
     <div class="px-4 py-2 bg-grey-darken-4 text-center w-100">
-      <NuxtLink style="text-decoration:none; color: white" to="privacy-policy" target="_blank">
+      <NuxtLink style="text-decoration:none; color: white" to="privacy-policy">
         <v-btn variant="text">Privacy Policy</v-btn>
       </NuxtLink>
     </div>

@@ -29,7 +29,7 @@
         <v-row class="py-8">
           <v-col cols="12" align-self="center">
             <div class="text-h2 text-white text-center font-weight-regular mt-5">Collect your motivation letter</div>
-            <MotivationLetterForm/>
+            <MotivationLetterOutput/>
           </v-col>
         </v-row>
       </v-container>
@@ -47,7 +47,7 @@
 
     <!-- About -->
     <v-container id="about">
-      <v-row class="py-8">
+      <v-row class="py-8" style="overflow: hidden;">
         <v-col cols="12" align-self="center">
           <div class="text-h2 text-center font-weight-regular">About</div>
         </v-col>
@@ -63,6 +63,7 @@
 
 import {useCurrentStateStore} from "../stores/currentState";
 import {storeToRefs} from "pinia";
+import MotivationLetterOutput from "../components/MotivationLetterOutput";
 
 const {loading, generated, rewardGranted, letter} = storeToRefs(useCurrentStateStore())
 const {$goTo} = useNuxtApp()

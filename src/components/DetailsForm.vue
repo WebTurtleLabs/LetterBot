@@ -19,19 +19,20 @@
           :rules="currentPositionRules"
       ></v-text-field>
 
-      <v-autocomplete
+      <v-select
           v-model="personalityTraits"
           chips
           multiple
-          clearable
           closable-chips
-          label="Personality traits"
+          :label="`Up to 5 personality traits (${personalityTraits.length}/5)`"
           :items="personalityTraitsItems"
           variant="outlined"
           required
           eager
+          counter="5"
           :rules="personalityTraitsRules"
-      ></v-autocomplete>
+          :menu-props="{height: '50vh', scrollStrategy: 'none'}"
+      ></v-select>
       <p v-if="adBlocking" class="text-subtitle-2">To maintain a free service, ads are utilized. We kindly ask you to disable the adblocker and refresh the page.</p>
     </v-form>
     <v-btn

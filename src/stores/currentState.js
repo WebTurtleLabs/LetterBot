@@ -12,13 +12,15 @@ export const useCurrentStateStore = defineStore('currentStateStore', {
             personalityTraits: ""
         },
         letter: "",
-        adBlocking: true
+        adBlocking: true,
+        copied: false
     }),
     actions: {
         async generate() {
             this.loading = true
             this.generated = false
             this.rewardGranted = false
+            this.copied = false
             const {data, error} = await useFetch('/api/generate',{
                 method: 'POST',
                 body:{

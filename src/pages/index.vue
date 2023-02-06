@@ -41,7 +41,7 @@
       </div>
       <ClientOnly>
         <v-btn @click="copyContent()" class="text-white half-over-button" size="x-large"
-               icon="mdi-content-copy" color="orange"/>
+               :icon="copied ? 'mdi-check' : 'mdi-content-copy'" color="orange"/>
       </ClientOnly>
     </v-container>
 
@@ -65,7 +65,7 @@ import {useCurrentStateStore} from "../stores/currentState";
 import {storeToRefs} from "pinia";
 import MotivationLetterOutput from "../components/MotivationLetterOutput";
 
-const {loading, generated, rewardGranted, letter} = storeToRefs(useCurrentStateStore())
+const {loading, generated, rewardGranted, letter, copied} = storeToRefs(useCurrentStateStore())
 const {$goTo} = useNuxtApp()
 
 const ready = computed(() =>{return (rewardGranted.value && generated.value)})
@@ -76,6 +76,7 @@ const aiDescription = "With our AI-powered technology, you can be sure that the 
 function copyContent(){
   if(process.client){
     navigator.clipboard.writeText(letter.value.replaceAll(/<br>/g, "\n"));
+    copied.value = true
   }
 }
 watch(ready, (newValue, oldValue) => {

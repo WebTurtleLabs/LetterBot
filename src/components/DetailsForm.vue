@@ -24,12 +24,13 @@
           chips
           multiple
           closable-chips
-          :label="`Up to 5 personality traits (${personalityTraits.length}/5)`"
+          :label="`Personality traits (max. 5)`"
           :items="personalityTraitsItems"
           variant="outlined"
           required
           eager
-          counter="5"
+          :counter-value="()=>{return `${personalityTraits.length}/5`}"
+          persistent-counter
           :rules="personalityTraitsRules"
           :menu-props="{height: '50vh', scrollStrategy: 'none'}"
       ></v-select>

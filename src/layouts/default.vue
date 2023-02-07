@@ -75,8 +75,9 @@ function adBlockCheck() {
   setTimeout(function() {
     let testAd = document.createElement("div");
     testAd.innerHTML = "&nbsp;";
+    testAd.style.height = "1px"
     testAd.className = "adsbygoogle";
-    document.body.appendChild(testAd);
+    document.getElementsByTagName("main")[0].insertAdjacentElement("beforeend", testAd);
     const testAdStyle = getComputedStyle(testAd);
 
     if (testAdStyle.display !== 'none') {

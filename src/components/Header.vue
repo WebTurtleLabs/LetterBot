@@ -2,9 +2,10 @@
   <div style="height:100vh; position:relative;">
     <v-container style="height:100%">
       <v-row style="height:100%;">
-        <v-col cols="12" class="v-col-md-8" :class="mdAndUp ? 'keep-center' : 'move-up'">
+        <v-col cols="12" class="v-col-md-8 keep-center"> <!--:class="true ? 'keep-center' : 'move-up'"-->
           <div class="text-h2 text-sm-h1 text-over-svg">LetterBot</div>
-          <div class="text-h6 text-sm-h5 text-over-svg">Next Gen AI-Powered Motivation Letter Generator</div>
+          <!--<div class="text-h6 text-sm-h5 text-over-svg">Next Gen AI-Powered Motivation Letter Generator</div>-->
+          <div class="text-h6 text-sm-h5 text-over-svg">Quick, Personalized & Professional Motivation Letters, Powered by AI</div>
           <v-btn class="my-3 text-over-svg" size="x-large" rounded="pill" color="primary" @click="$goTo('generate')">Begin</v-btn>
         </v-col>
         <v-col cols="12" align-self="center" class="v-col-md-4">

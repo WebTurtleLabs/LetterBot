@@ -1,5 +1,3 @@
-import {decimal} from "vscode-languageserver-types";
-
 export default defineNuxtPlugin(nuxtApp => {
     return {
         provide: {

@@ -82,7 +82,6 @@ function adBlockCheck() {
 
     if (testAdStyle.display !== 'none') {
       adBlocking.value = false
-      console.log("adblocking enabled")
     }
   },1000)
 }

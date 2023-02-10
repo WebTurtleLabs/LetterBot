@@ -56,6 +56,7 @@
 import {useCurrentStateStore} from "../stores/currentState";
 import {storeToRefs} from "pinia";
 import {ref} from "vue";
+import {event} from 'vue-gtag'
 
 const inputForm = ref(null);
 const organization = ref("");
@@ -154,6 +155,12 @@ async function validate() {
     window.aiptag.cmd.player.push(function () {
       window.aiptag.adplayer.startRewardedAd();
     });
+
+    // Send data
+    event('Generate', {
+      'event_category': 'button_click',
+      'event_label': 'Generate Button Click'
+    })
 
     // Generate motivation letter
     await useCurrentStateStore().generate();

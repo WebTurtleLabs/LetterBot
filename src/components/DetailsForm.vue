@@ -157,7 +157,7 @@ async function validate() {
     });
 
     // Send data
-    event('Generate', {
+    event('generate', {
       'event_category': 'button_click',
       'event_label': 'Generate Button Click'
     })
